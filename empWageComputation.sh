@@ -1,26 +1,39 @@
-isPartTime=1;
-isFullTime=2;
-WagePerHr=20;
-numWorkingDay=20
-empHr=0;
-TotalWage=0;
+x=$((RANDOM%2))
+case "$x" in
+"1")
+echo employee is present
+;;
+"0")
+echo employee is absent
+;;
+esac
 
-for((day=1;day<=$numWorkingDay;day++))
-do
-   empCheck=$(($RANDOM%3));
+fulldayhour=8
+parttimehour=4
+wagephour=20
+month=1
+totalhr=0
+totalwage=0
 
-	case $empCheck in
-		 $isFullTime)
-			empHr=8
-			;;
-		$isPartTime)
-			empHr=4
-			;;
-		*)
-	  	empHr=0
-	        	;;
-	esac
-	TotalWage=$(($WagePerHr*$empHr))
-	echo "DailyWage of Employee::"$TotalWage
+while [[ $month != 21 ]];do
+
+W=$((4+((4*$((RANDOM%2))))))
+case "$W" in
+"8")
+echo wage for fullday: "$(($fulldayhour*$wagephour))"
+totalhr=$(($totalhr+$W))
+((month++))
+;;
+
+"4")
+echo part time wage  : "$(($parttimehour*$wagephour))"
+totalhr=$(($totalhr+$W))
+((month++))
+;;
+esac
 done
+totalwage=$(($totalhr*20))
+echo wage for working for a month:"$totalwage"
+
+
 
