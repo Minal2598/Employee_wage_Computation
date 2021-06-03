@@ -8,29 +8,35 @@ echo employee is absent
 ;;
 esac
 
-fulldayhour=8
-parttimehour=4
-wagephour=20
+FullDayHr=8
+PartTimeHr=4
+wageperHr=20
 month=1
 totalhr=0
 totalwage=0
 
 while [[ $month != 21 ]];do
 
-W=$((4+((4*$((RANDOM%2))))))
-case "$W" in
+a=$((4+((4*$((RANDOM%2))))))
+case "$a" in
 "8")
-echo wage for fullday: "$(($fulldayhour*$wagephour))"
-totalhr=$(($totalhr+$W))
+echo wage for fullday: "$(($FullDayHr*$wageperHr))"
+totalhr=$(($totalhr+$a))
 ((month++))
 ;;
 
 "4")
-echo part time wage  : "$(($parttimehour*$wagephour))"
-totalhr=$(($totalhr+$W))
+echo part time wage  : "$(($PartTimeHr*$wageperHr))"
+totalhr=$(($totalhr+$a))
 ((month++))
 ;;
+
 esac
+
+if [ $totalhr -ge 100 ]
+then
+     break
+fi
 done
 totalwage=$(($totalhr*20))
 echo wage for working for a month:"$totalwage"
