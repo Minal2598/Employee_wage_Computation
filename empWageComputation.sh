@@ -1,16 +1,19 @@
-echo "Welcome to Employee Wage Computation"
+isPartTime=1;
+isFullTime=2;
+WagePerHr=20;
+empHr=0;
+TotalWage=0;
+random=$(($RANDOM%3));
 
-isPresent=1
-
-random=$(($RANDOM%2))
-
-if [ $isPresent -eq $random ]
+if [ $isFullTime -eq $random ];
 then
-     WagePerHr=20;
-     FullDayHr=8;
-     Salary=$(($FullDayHr*$WagePerHr))
-     echo $Salary
+       empHr=8;
+elif [ $isPartTime -eq $random ];
+then
+       empHr=4;
 else
-     Salary=0;
-
+     empHr=0;
 fi
+TotalWage=$(($WagePerHr*$empHr))
+echo "DailyWage of Employee::"$TotalWage
+
